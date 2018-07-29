@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'cmake . 2>&1'
+        sh 'cmake . -DCMAKE_BUILD_TYPE=DEBUG 2>&1'
         sh 'make all 2>&1'
       }
     }
@@ -18,7 +18,7 @@ pipeline {
     stage('Analysis') {
       steps {
         sh 'cppcheck --enable=all --inconclusive --xml --xml-version=2 src 2> cppcheck.xml'
-        
+
         withSonarQubeEnv("r2d2") {
           sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties -Dsonar.branch=${env.BRANCH_NAME}"
         }

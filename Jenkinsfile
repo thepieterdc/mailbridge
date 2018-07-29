@@ -11,7 +11,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'cmake . -DCMAKE_BUILD_TYPE=DEBUG 2>&1'
-        sh 'make all 2>&1'
+        sh 'make all 2>&1 > build.log'
       }
     }
 

@@ -17,7 +17,7 @@ pipeline {
 
     stage('Analysis') {
       steps {
-        sh 'cppcheck --enable=all --xml --xml-version=2 src 2> cppcheck.xml'
+        sh 'cppcheck --enable=all  --suppress=missingIncludeSystem --xml --xml-version=2 src 2> cppcheck.xml'
 
         withSonarQubeEnv("r2d2") {
           sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties -Dsonar.branch=${env.BRANCH_NAME}"

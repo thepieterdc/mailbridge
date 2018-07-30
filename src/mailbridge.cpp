@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 #include <netinet/in.h>
+#include "util/logging_util.h"
 
 /**
  * Main entry point.
@@ -13,9 +14,7 @@
  * @return 0 on success
  */
 int main() {
-	// Start a socket server on port 25.
-
-	struct sockaddr_in server{};
-
+	log_info("Test info");
+	throw_error("Test info");
 	return EXIT_SUCCESS;
 }

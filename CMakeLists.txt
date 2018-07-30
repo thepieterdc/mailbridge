@@ -18,3 +18,4 @@ file(GLOB util_SRC
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-missing-field-initializers -Wno-unused-parameter)
 
 add_executable(mailbridge src/mailbridge.cpp ${util_SRC})
+target_link_libraries(mailbridge pthread)

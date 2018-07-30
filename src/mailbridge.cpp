@@ -86,20 +86,30 @@ void smtp_thread(int client) {
 			helo_name = line.substr(5);
 			client_send(client, "250 r2d2.mailbridge.local\n");
 		} else if (command == "MAIL") {
-			from_addr = line.substr(line.find('<'), line.find('>'));
+			size_t startpos = line.find('<');
+			from_addr = line.substr(startpos + 1, line.find('>') - startpos - 1);
 			client_send(client, "250 OK\n");
 		} else if (command == "QUIT") {
 			client_send(client, "221 BYE\n");
 			close(client);
 			break;
 		} else if (command == "RCPT") {
-			to_addr = line.substr(line.find('<'), line.find('>'));
+			size_t startpos = line.find('<');
+			to_addr = line.substr(startpos + 1, line.find('>') - startpos - 1);
 			client_send(client, "250 OK\n");
 		} else {
 			close(client);
 			break;
 		}
 	}
+
+	// 11 is strlen(\r\nSubject: )
+	std::string subject_start(data.substr(data.find("\r\nSubject: ") + 11));
+	std::string subject(subject_start.substr(0, subject_start.find("\r\n")));
+
+	std::string message_start(subject_start.substr(subject_start.find("\r\n\r\n") + 4));
+	std::string message(message_start.substr(0, message_start.length() - 2));
+	std::cout << data << std::endl;
 }
 
 /**

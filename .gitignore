@@ -96,6 +96,7 @@ dkms.conf
 *.lib
 
 # Executables
+*.cbp
 *.exe
 *.out
 *.app
@@ -147,3 +148,6 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+
+# Executable
+mailbridge

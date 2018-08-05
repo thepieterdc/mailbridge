@@ -1,6 +1,7 @@
 language: cpp
 
 matrix:
+  fast_finish: true
   include:
     # works on Precise and Trusty
     - os: linux
@@ -67,7 +68,10 @@ matrix:
         - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
 
 before_install:
-    - eval "${MATRIX_EVAL}"
+  - eval "${MATRIX_EVAL}"
+
+install:
+  if [ "$TRAVIS_OS_NAME" == 'osx' ]; then brew update; brew cleanup; brew cask cleanup; fi
 
 script:
   - cmake --version

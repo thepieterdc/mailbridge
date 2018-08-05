@@ -1,20 +1,4 @@
 # mailbridge
 
-![Build Status](https://r2d2.singular-it.be/jenkins/buildStatus/icon?job=mailbridge/master)]
-
-![LoC](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=ncloc)
-
-![Code smells](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=code_smells
-)
-
-![Bugs](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=bugs
-)
-
-![Maintainability rating](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=sqale_rating
-)
-
-![Reliability rating](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=reliability_rating
-)
-
-![Security rating](https://r2d2.singular-it.be/sonar/api/project_badges/measure?project=mailbridge%3Atest&metric=security_rating
-)
+[![Travis Badge](https://travis-ci.org/thepieterdc/mailbridge.svg?branch=master)](https://travis-ci.org/thepieterdc/mailbridge/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7cd4042a1c8e42828b7182d7e5580564)](https://www.codacy.com/project/thepieterdc/mailbridge/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thepieterdc/mailbridge&amp;utm_campaign=Badge_Grade_Dashboard)

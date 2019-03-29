@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
     struct sockaddr_in client_addr = {};
     socklen_t client_addr_len = sizeof(client_addr);
 
-    SmtpServer srv(configuration);
+    SmtpServer srv(&configuration);
 
     while (true) {
         int client = accept(server, (struct sockaddr *) &client_addr, &client_addr_len);

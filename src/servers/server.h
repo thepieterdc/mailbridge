@@ -15,7 +15,7 @@
  */
 class Server {
 protected:
-    Configuration config;
+    Configuration *config;
     Handler *handler;
 public:
     /**
@@ -23,7 +23,7 @@ public:
      *
      * @param config the configuration to use
      */
-    explicit Server(const Configuration &config);
+    explicit Server(Configuration *config);
 
     /**
      * Server destructor.
@@ -44,7 +44,7 @@ public:
      *
      * @return the configuration
      */
-    Configuration configuration() {
+    Configuration *configuration() {
         return this->config;
     }
 

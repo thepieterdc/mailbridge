@@ -29,7 +29,7 @@ public:
      *
      * @param message the message to handle
      */
-    virtual void handle(SmtpMessage message) = 0;
+    virtual void handle(SmtpMessage *message) = 0;
 };
 
 #endif /* MAILBRIDGE_HANDLERS_HANDLER_H */

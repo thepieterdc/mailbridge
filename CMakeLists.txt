@@ -5,7 +5,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
 
-set(CMAKE_MODULE_PATH  ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -18,17 +18,31 @@ add_definitions(-DMAILBRIDGE_VERSION="${PROJECT_VERSION}")
 find_package(CURL REQUIRED)
 find_package(Json REQUIRED)
 
+file(GLOB configurations_SRC
+    "src/configurations/*.h"
+    "src/configurations/*.cpp")
+
+file(GLOB handlers_SRC
+    "src/handlers/*.h"
+    "src/handlers/*.cpp")
+
+file(GLOB messages_SRC
+    "src/messages/*.h"
+    "src/messages/*.cpp")
+
 file(GLOB servers_SRC
     "src/servers/*.h"
-    "src/servers/*.cpp")
+    "src/servers/*.cpp"
+    "src/servers/**/*.h"
+    "src/servers/**/*.cpp")
 
 file(GLOB util_SRC
-        "src/util/*.h"
-        "src/util/*.cpp")
+    "src/util/*.h"
+    "src/util/*.cpp")
 
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-missing-field-initializers -Wno-unused-parameter)
 
-add_executable(mailbridge src/main.cpp ${servers_SRC} ${util_SRC} src/messages/smtp_message.h src/servers/threads/smtp_thread.h src/servers/threads/smtp_thread.cpp src/handlers/handler.h)
+add_executable(mailbridge src/main.cpp ${configurations_SRC} ${handlers_SRC} ${messages_SRC} ${servers_SRC} ${util_SRC})
 target_link_libraries(mailbridge curl pthread)
 
 include_directories(${JSON_INCLUDE_DIRS})

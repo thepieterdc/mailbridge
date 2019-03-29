@@ -21,7 +21,7 @@ public:
      *
      * @param config the configuration to use
      */
-    explicit SmtpServer(const Configuration &config) : Server(config) {};
+    explicit SmtpServer(Configuration *config) : Server(config) {};
 
     /**
      * SmtpServer destructor.

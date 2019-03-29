@@ -16,7 +16,7 @@ void SmtpThread::client_send(const std::string &data) {
 }
 
 void SmtpThread::greet() {
-    client_send("220 " + this->server.configuration().get_name() + "\n");
+    client_send("220 " + this->server.configuration()->get_name() + "\n");
 }
 
 void SmtpThread::handle_auth() {
@@ -66,7 +66,7 @@ void SmtpThread::handle_data() {
 
 void SmtpThread::handle_helo() {
     this->helo_name = this->last_line.substr(5);
-    client_send("250 " + this->server.configuration().get_name() + "\n");
+    client_send("250 " + this->server.configuration()->get_name() + "\n");
 }
 
 void SmtpThread::handle_mail() {

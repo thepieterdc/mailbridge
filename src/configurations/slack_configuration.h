@@ -20,7 +20,6 @@ using json = nlohmann::json;
 class SlackConfiguration {
 private:
     std::string channel;
-    std::string team;
     std::string webhook;
 public:
     /**
@@ -30,8 +29,8 @@ public:
      * @param team the team
      * @param webhook the webhook url
      */
-    SlackConfiguration(std::string channel, std::string team, std::string webhook) :
-            channel(std::move(channel)), team(std::move(team)), webhook(std::move(webhook)) {};
+    SlackConfiguration(std::string channel, std::string webhook) :
+            channel(std::move(channel)), webhook(std::move(webhook)) {};
 
     /**
      * SlackConfiguration destructor.
@@ -48,15 +47,6 @@ public:
     }
 
     /**
-     * Gets the Slack team name.
-     *
-     * @return team name
-     */
-    std::string get_team() {
-        return this->team;
-    }
-
-    /**
      * Gets the Slack webhook url.
      *
      * @return webhook url
@@ -64,14 +54,6 @@ public:
     std::string get_webhook() {
         return this->webhook;
     }
-
-    /**
-     * Parses the given json configuration to a SlackConfiguration instance.
-     *
-     * @param config the configuration to parse
-     * @return the parsed configuration
-     */
-    static SlackConfiguration parse(json config);
 };
 
 #endif /* MAILBRIDGE_CONFIGURATIONS_SLACK_CONFIGURATION_H */

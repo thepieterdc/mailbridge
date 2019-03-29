@@ -9,7 +9,9 @@ Configuration::Configuration(const std::string &file) {
     json j;
     file_stream >> j;
 
-    this->handler_configuration = j["handler"];
-    this->name = j["name"];
-    this->port = static_cast<std::uint_fast16_t>(j["port"]);
+    json handler = j["handler"];
+    this->handler_configuration = handler.get_ref<json::object_t &>();
+
+    this->name = j["name"].get<std::string>();
+    this->port = j["port"].get<std::uint_fast16_t>();
 }

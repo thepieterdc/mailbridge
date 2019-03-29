@@ -16,21 +16,23 @@
  */
 class SlackHandler : public Handler {
 private:
-    SlackConfiguration configuration;
+    SlackConfiguration *config;
 public:
     /**
      * SlackHandler constructor.
      *
      * @param configuration the Slack configuration
      */
-    explicit SlackHandler(const SlackConfiguration &configuration) : configuration(configuration) {};
+    explicit SlackHandler(SlackConfiguration *configuration) : config(configuration) {};
 
     /**
      * SlackHandler destructor.
      */
-    ~SlackHandler() override = default;
+    ~SlackHandler() override {
+        delete this->config;
+    }
 
-    void handle(SmtpMessage message) override;
+    void handle(SmtpMessage *message) override;
 };
 
 #endif /* MAILBRIDGE_HANDLERS_SLACK_HANDLER_H */

@@ -1,8 +1,7 @@
 {
     "handler": {
         "channel": "",
-        "team": "",
-        "url": "https://hooks.slack.com/services/a/b/c"
+        "webhook": "https://hooks.slack.com/services/a/b/c"
     },
     "name": "thepieterdc.mailbridge.local",
     "port": 2525

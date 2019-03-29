@@ -21,23 +21,31 @@ public:
     /**
      * Configuration constructor.
      *
-     * @param argc argument count
-     * @param argv argument vector
+     * @param file the path to the configuration file
      */
-    Arguments(int argc, char **argv);
+    explicit Configuration(const std::string &file);
 
     /**
-     * Arguments destructor.
+     * Configuration destructor.
      */
-    ~Arguments() = default;
+    ~Configuration() = default;
 
     /**
-     * Gets the configuration file.
+     * Gets the name of the mailserver.
      *
-     * @return the configuration file
+     * @return the hostname
      */
-    std::string get_config_file() {
-        return this->config_file;
+    std::string get_name() {
+        return this->name;
+    }
+
+    /**
+     * Gets the port the application should listen on.
+     *
+     * @return the port
+     */
+    std::uint_fast16_t get_port() {
+        return this->port;
     }
 };
 

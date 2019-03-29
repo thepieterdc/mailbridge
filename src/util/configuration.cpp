@@ -9,5 +9,6 @@ Configuration::Configuration(const std::string &file) {
     json j;
     file_stream >> j;
 
+    this->name = j["name"];
     this->port = static_cast<std::uint_fast16_t>(j["port"]);
 }

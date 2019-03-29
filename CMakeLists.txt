@@ -28,7 +28,7 @@ file(GLOB util_SRC
 
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-missing-field-initializers -Wno-unused-parameter)
 
-add_executable(mailbridge src/main.cpp ${servers_SRC} ${util_SRC} src/messages/smtp_message.h src/servers/threads/smtp_thread.h)
+add_executable(mailbridge src/main.cpp ${servers_SRC} ${util_SRC} src/messages/smtp_message.h src/servers/threads/smtp_thread.h src/servers/threads/smtp_thread.cpp)
 target_link_libraries(mailbridge curl pthread)
 
 include_directories(${JSON_INCLUDE_DIRS})

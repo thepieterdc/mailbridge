@@ -1,40 +1,20 @@
 #include <sys/socket.h>
+#include <unistd.h>
+#include <iostream>
 #include "smtp_server.h"
-
-/**
- * Receive a line from the client.
- *
- * @param client the client socket
- * @return the data received
- */
-inline std::string client_receive(int client) {
-    char buffer[1024 + 1] = {0};
-    recv(client, &buffer, 1024, 0);
-    return std::string(buffer);
-}
-
-/**
- * Sends a line to the client.
- *
- * @param client client socket
- * @param data data to send
- */
-inline void client_send(int client, const std::string &data) {
-    auto length = static_cast<size_t>(data.length());
-    send(client, data.c_str(), length, 0);
-}
+#include "threads/smtp_thread.h"
 
 void SmtpServer::accept_client(int socket) {
-    this->send_greet(socket);
+    SmtpThread client(*this, socket);
+    client.greet();
 
-    std::string data;
-    std::string from_addr;
-    std::string helo_name;
-    std::string to_addr;
-
-    while (true) {
-        std::string line = client_receive(socket);
+    while (client.is_active()) {
+        std::string line = client.receive();
         std::string command = line.substr(0, 4);
+
+        if (command == "AUTH") {
+            client.handle_auth();
+        }
 
 //        if (command == "DATA") {
 //            client_send(client, "354 Start mail input, finish by sending <CRLF>.<CRLF>\n");
@@ -64,10 +44,8 @@ void SmtpServer::accept_client(int socket) {
 //            }
 //
 //            client_send(client, "250 OK\n");
-        if (command == "HELO" || command == "EHLO") {
-            this->handle_helo()
-            helo_name = line.substr(5);
-            client_send(client, "250 r2d2.mailbridge.local\n");
+        else if (command == "HELO" || command == "EHLO") {
+            client.handle_helo();
         }
 //        } else if (command == "MAIL") {
 //            size_t startpos = line.find('<');
@@ -81,10 +59,11 @@ void SmtpServer::accept_client(int socket) {
 //            size_t startpos = line.find('<');
 //            to_addr = line.substr(startpos + 1, line.find('>') - startpos - 1);
 //            client_send(client, "250 OK\n");
-//        } else {
-//            close(client);
-//            break;
-//        }
+        else {
+            std::cerr << "Unknown command: " << command << std::endl;
+            close(socket);
+            break;
+        }
     }
 
 //    // 11 is strlen(\r\nSubject: )
@@ -94,8 +73,4 @@ void SmtpServer::accept_client(int socket) {
 //    std::string message_start(subject_start.substr(subject_start.find("\r\n\r\n") + 4));
 //    std::string message(message_start.substr(0, message_start.length() - 2));
 //    std::cout << data << std::endl;
-}
-
-void SmtpServer::send_greet(int client) {
-    client_send(client, "220" + this->config.get_name() + "\n");
 }

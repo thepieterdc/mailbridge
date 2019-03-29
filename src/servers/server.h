@@ -34,6 +34,15 @@ public:
      * @param socket the client socket
      */
     virtual void accept_client(int socket) = 0;
+
+    /**
+     * Gets the server configuration.
+     *
+     * @return the configuration
+     */
+    Configuration configuration() {
+        return this->config;
+    }
 };
 
 #endif /* MAILBRIDGE_SERVERS_SERVER_H */

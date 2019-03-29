@@ -14,22 +14,6 @@
  * SMTP server.
  */
 class SmtpServer : public Server {
-private:
-    /**
-     * Handles the HELO/EHLO command.
-     *
-     * @param client the client socket
-     * @return the client helo name
-     */
-    std::string handle_helo(int client, std::string data);
-
-    /**
-     * Greets the client.
-     *
-     * @param client the client socket
-     */
-    void send_greet(int client);
-
 public:
     /**
      * SmtpServer constructor.

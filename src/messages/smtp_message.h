@@ -23,6 +23,11 @@ private:
 public:
     /**
      * SmtpMessage constructor.
+     */
+    SmtpMessage() : message(""), sender(""), subject("") {};
+
+    /**
+     * SmtpMessage constructor.
      *
      * @param sender the sender
      * @param subject the subject

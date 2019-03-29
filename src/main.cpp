@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "util/logging_util.h"
 #include "util/arguments.h"
-#include "util/configuration.h"
+#include "configurations/configuration.h"
 #include "servers/smtp_server.h"
 
 /**
@@ -41,6 +41,8 @@ int main(int argc, char **argv) {
     log_info("Mailbridge version " MAILBRIDGE_VERSION ".");
 
     Configuration configuration(arguments.get_config_file());
+
+    log_info("Using configuration: " + arguments.get_config_file() + ".");
 
     int server = socket(AF_INET, SOCK_STREAM, 0);
     if (server < 0) {

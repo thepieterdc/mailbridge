@@ -7,7 +7,8 @@
 #ifndef MAILBRIDGE_SERVERS_SERVER_H
 #define MAILBRIDGE_SERVERS_SERVER_H
 
-#include "../util/configuration.h"
+#include "../configurations/configuration.h"
+#include "../handlers/handler.h"
 
 /**
  * Abstract server.
@@ -15,18 +16,21 @@
 class Server {
 protected:
     Configuration config;
+    Handler *handler;
 public:
     /**
      * Server constructor.
      *
      * @param config the configuration to use
      */
-    explicit Server(const Configuration &config) : config(config) {};
+    explicit Server(const Configuration &config);
 
     /**
      * Server destructor.
      */
-    virtual ~Server() = default;
+    virtual ~Server() {
+        delete this->handler;
+    }
 
     /**
      * Accepts the client at the given socket.
@@ -43,6 +47,13 @@ public:
     Configuration configuration() {
         return this->config;
     }
+
+    /**
+     * Handles the given message using the configured handler.
+     *
+     * @param message the message to handle
+     */
+    void handle(SmtpMessage *message);
 };
 
 #endif /* MAILBRIDGE_SERVERS_SERVER_H */

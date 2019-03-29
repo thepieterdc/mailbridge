@@ -31,4 +31,6 @@ void SmtpServer::accept_client(int socket) {
     }
 
     close(socket);
+
+    this->handle(client.get_message());
 }

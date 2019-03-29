@@ -151,3 +151,6 @@ CTestTestfile.cmake
 
 # Executable
 mailbridge
+
+# Own configuration
+conf/configuration.json

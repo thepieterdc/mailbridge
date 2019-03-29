@@ -18,13 +18,17 @@ add_definitions(-DMAILBRIDGE_VERSION="${PROJECT_VERSION}")
 find_package(CURL REQUIRED)
 find_package(Json REQUIRED)
 
+file(GLOB servers_SRC
+    "src/servers/*.h"
+    "src/servers/*.cpp")
+
 file(GLOB util_SRC
         "src/util/*.h"
         "src/util/*.cpp")
 
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-missing-field-initializers -Wno-unused-parameter)
 
-add_executable(mailbridge src/main.cpp ${util_SRC} src/util/arguments.h)
+add_executable(mailbridge src/main.cpp ${servers_SRC} ${util_SRC} src/messages/smtp_message.h src/servers/threads/smtp_thread.h)
 target_link_libraries(mailbridge curl pthread)
 
 include_directories(${JSON_INCLUDE_DIRS})

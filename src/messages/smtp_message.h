@@ -4,6 +4,14 @@
 
 #include <utility>
 
+#include <utility>
+
+#include <utility>
+
+#include <utility>
+
+#include <utility>
+
 /**
  * Copyright (c) 2019 - Pieter De Clercq. All rights reserved.
  *
@@ -18,23 +26,14 @@
 class SmtpMessage {
 private:
     std::string message;
+    std::string receiver;
     std::string sender;
     std::string subject;
 public:
     /**
      * SmtpMessage constructor.
      */
-    SmtpMessage() : message(""), sender(""), subject("") {};
-
-    /**
-     * SmtpMessage constructor.
-     *
-     * @param sender the sender
-     * @param subject the subject
-     * @param message the message
-     */
-    SmtpMessage(const std::string &sender, const std::string &subject, const std::string &message) :
-            message(""), sender(""), subject("") {};
+    SmtpMessage() : message(""), receiver(""), sender(""), subject("") {};
 
     /**
      * SmtpMessage destructor.
@@ -48,6 +47,15 @@ public:
      */
     std::string get_message() {
         return this->message;
+    }
+
+    /**
+     * Gets the receiver of the email.
+     *
+     * @return the receiver
+     */
+    std::string get_receiver() {
+        return this->receiver;
     }
 
     /**
@@ -75,6 +83,15 @@ public:
      */
     void set_message(std::string msg) {
         this->message = std::move(msg);
+    }
+
+    /**
+     * Sets receiver of the email.
+     *
+     * @param recv the receiver
+     */
+    void set_receiver(std::string recv) {
+        this->receiver = std::move(recv);
     }
 
     /**

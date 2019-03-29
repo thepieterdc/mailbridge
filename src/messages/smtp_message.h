@@ -1,17 +1,3 @@
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
-#include <utility>
-
 /**
  * Copyright (c) 2019 - Pieter De Clercq. All rights reserved.
  *
@@ -23,6 +9,9 @@
 
 #include <string>
 
+/**
+ * An smtp message.
+ */
 class SmtpMessage {
 private:
     std::string message;

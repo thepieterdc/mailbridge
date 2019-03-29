@@ -9,6 +9,7 @@
 
 #include "server.h"
 #include "../messages/smtp_message.h"
+#include "../handlers/handler.h"
 
 /**
  * SMTP server.

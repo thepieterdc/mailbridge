@@ -1,5 +1,9 @@
 {
-  "handlers": [{}],
-  "name": "thepieterdc.mailbridge.local",
-  "port": 2525
+    "handler": {
+        "channel": "",
+        "team": "",
+        "url": "https://hooks.slack.com/services/a/b/c"
+    },
+    "name": "thepieterdc.mailbridge.local",
+    "port": 2525
 }

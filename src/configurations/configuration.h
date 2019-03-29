@@ -8,13 +8,17 @@
 #define MAILBRIDGE_UTIL_CONFIGURATION_H
 
 #include <cstdint>
+#include <json.hpp>
 #include <string>
+
+using json = nlohmann::json;
 
 /**
  * Application configuration.
  */
 class Configuration {
 private:
+    json handler_configuration;
     std::string name;
     std::uint_fast16_t port;
 public:
@@ -29,6 +33,15 @@ public:
      * Configuration destructor.
      */
     ~Configuration() = default;
+
+    /**
+     * Gets the handler configuration.
+     *
+     * @return the handler configuration
+     */
+    json get_handler_configuration() {
+        return this->handler_configuration;
+    }
 
     /**
      * Gets the name of the mailserver.

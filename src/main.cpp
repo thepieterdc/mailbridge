@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "util/logging_util.h"
 #include "util/arguments.h"
+#include "util/configuration.h"
 
 /**
  * Receive a line from the client.
@@ -31,10 +32,7 @@ std::string client_receive(int client) {
 
 void client_send(int client, const std::string &data) {
     auto length = static_cast<size_t>(data.length());
-
-    char buffer[length + 1] = {0};
-    strcpy(buffer, data.c_str());
-    send(client, buffer, length, 0);
+    send(client, data.c_str(), length, 0);
 }
 
 /**
@@ -123,9 +121,9 @@ void smtp_thread(int client) {
 int main(int argc, char **argv) {
     Arguments arguments(argc, argv);
 
-    log_info("Mailbridge version " MAILBRIDGE_VERSION);
+    log_info("Mailbridge version " MAILBRIDGE_VERSION ".");
 
-
+    Configuration configuration(arguments.get_config_file());
 
     int server = socket(AF_INET, SOCK_STREAM, 0);
     if (server < 0) {
@@ -159,7 +157,7 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
 
-    log_info("SMTP server accepting connections at port 1025.");
+    log_info("Accepting connections at port " + std::to_string(configuration.get_port()) + ".");
 
     struct sockaddr_in client_addr = {};
     socklen_t client_addr_len = sizeof(client_addr);

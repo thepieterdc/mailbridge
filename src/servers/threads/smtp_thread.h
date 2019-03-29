@@ -48,6 +48,15 @@ public:
     }
 
     /**
+     * Gets the received message.
+     *
+     * @return the received message
+     */
+    SmtpMessage *get_message() {
+        return this->message;
+    }
+
+    /**
      * Greets the client.
      */
     void greet();
@@ -58,9 +67,29 @@ public:
     void handle_auth();
 
     /**
+     * Handles the DATA command.
+     */
+    void handle_data();
+
+    /**
      * Handles the HELO/EHLO command.
      */
     void handle_helo();
+
+    /**
+     * Handles the MAIL command.
+     */
+    void handle_mail();
+
+    /**
+     * Handles the QUIT command.
+     */
+    void handle_quit();
+
+    /**
+     * Handles the RCPT command.
+     */
+    void handle_rcpt();
 
     /**
      * Gets whether the thread is still in use.

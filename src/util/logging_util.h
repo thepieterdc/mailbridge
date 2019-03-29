@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018 - Pieter De Clercq. All rights reserved.
+ * Copyright (c) 2019 - Pieter De Clercq. All rights reserved.
  * 
  * https://github.com/thepieterdc/mailbridge/
  */

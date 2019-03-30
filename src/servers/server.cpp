@@ -7,6 +7,12 @@
 #include "../handlers/stdout_handler.h"
 
 bool Server::authenticate(Authentication *authentication) {
+    for (auto &handler : this->configuration()->get_handlers()) {
+        auto auth = handler.first;
+        if (*auth == *authentication) {
+            return true;
+        }
+    }
     return false;
 }
 

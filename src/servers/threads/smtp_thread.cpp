@@ -33,8 +33,8 @@ void SmtpThread::handle_auth() {
     auto authentication_data_raw = base64_decode(authentication_line.at(2));
     auto authentication_data = split_string(authentication_data_raw, '\0');
 
-    auto username = authentication_line.at(1);
-    auto password = authentication_line.at(2);
+    auto username = authentication_data.at(1);
+    auto password = authentication_data.at(2);
 
     this->authentication = new Authentication(username, password);
 

@@ -7,6 +7,7 @@
 #ifndef MAILBRIDGE_SERVERS_SMTP_SERVER_H
 #define MAILBRIDGE_SERVERS_SMTP_SERVER_H
 
+#include <map>
 #include "server.h"
 #include "../messages/smtp_message.h"
 #include "../handlers/handler.h"

@@ -16,21 +16,18 @@
 class Server {
 protected:
     Configuration *config;
-    Handler *handler;
 public:
     /**
      * Server constructor.
      *
      * @param config the configuration to use
      */
-    explicit Server(Configuration *config);
+    explicit Server(Configuration *config) : config(config) {};
 
     /**
      * Server destructor.
      */
-    virtual ~Server() {
-        delete this->handler;
-    }
+    virtual ~Server() = default;
 
     /**
      * Accepts the client at the given socket.

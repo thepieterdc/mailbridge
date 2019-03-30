@@ -1,8 +1,20 @@
 {
-    "handler": {
-        "channel": "#mails",
-        "webhook": "https://hooks.slack.com/services/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"
-    },
+    "handlers": [
+        {
+            "username": "ffb",
+            "password": "ffb",
+            "handler": "slack",
+            "options": {
+                "channel": "some_channel_name",
+                "webhook": "https://hooks.slack.com/services/a/b/c"
+            }
+        },
+        {
+            "username": "ffb2",
+            "password": "ffb2",
+            "handler": "stdout"
+        }
+    ],
     "name": "thepieterdc.mailbridge.local",
     "port": 2525
 }

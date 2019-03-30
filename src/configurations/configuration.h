@@ -4,12 +4,15 @@
  * https://github.com/thepieterdc/mailbridge/
  */
 
-#ifndef MAILBRIDGE_UTIL_CONFIGURATION_H
-#define MAILBRIDGE_UTIL_CONFIGURATION_H
+#ifndef MAILBRIDGE_CONFIGURATIONS_CONFIGURATION_H
+#define MAILBRIDGE_CONFIGURATIONS_CONFIGURATION_H
 
 #include <cstdint>
-#include <json.hpp>
+#include <map>
 #include <string>
+#include <json.hpp>
+#include "authentication.h"
+#include "../handlers/handler.h"
 
 using json = nlohmann::json;
 
@@ -18,7 +21,7 @@ using json = nlohmann::json;
  */
 class Configuration {
 private:
-    json handler_configuration;
+    std::multimap<Authentication *, Handler *> handlers;
     std::string name;
     std::uint_fast16_t port;
 public:
@@ -35,12 +38,12 @@ public:
     ~Configuration() = default;
 
     /**
-     * Gets the handler configuration.
+     * Gets the configured handlers.
      *
-     * @return the handler configuration
+     * @return the configured handlers
      */
-    json get_handler_configuration() {
-        return this->handler_configuration;
+    std::multimap<Authentication *, Handler *> get_handlers() {
+        return this->handlers;
     }
 
     /**
@@ -62,4 +65,4 @@ public:
     }
 };
 
-#endif /* MAILBRIDGE_UTIL_CONFIGURATION_H */
+#endif /* MAILBRIDGE_CONFIGURATIONS_CONFIGURATION_H */

@@ -36,3 +36,18 @@ A configuration file can be provided using the `-f` flag. This must be a json fi
     "name": "thepieterdc.github.io",
     "port": 25
 }
+
+## Usage in projects
+
+### Ruby-on-Rails
+config/environments/development.rb
+```ruby
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+    address: 'localhost',
+    authentication: :plain,
+    password: 'my_password',
+    port: 2525,
+    user_name: 'my_username'
+}
+```

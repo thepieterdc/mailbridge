@@ -4,6 +4,7 @@
 #include "server.h"
 #include "../configurations/slack_configuration.h"
 #include "../handlers/slack_handler.h"
+#include "../handlers/stdout_handler.h"
 
 Server::Server(Configuration *config) : config(config) {
     auto handler_config = config->get_handler_configuration();
@@ -13,7 +14,9 @@ Server::Server(Configuration *config) : config(config) {
 
     auto *slack_configuration = new SlackConfiguration(channel, webhook);
 
-    this->handler = new SlackHandler(slack_configuration);
+    this->handler = new StdoutHandler();
+
+//    this->handler = new SlackHandler(slack_configuration);
 }
 
 void Server::handle(SmtpMessage *message) {

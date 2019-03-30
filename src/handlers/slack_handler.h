@@ -23,7 +23,7 @@ public:
      *
      * @param configuration the Slack configuration
      */
-    explicit SlackHandler(SlackConfiguration *configuration) : config(configuration) {};
+    explicit SlackHandler(SlackConfiguration *configuration) : Handler(), config(configuration) {};
 
     /**
      * SlackHandler destructor.

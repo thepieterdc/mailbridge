@@ -36,6 +36,7 @@ A configuration file can be provided using the `-f` flag. This must be a json fi
     "name": "thepieterdc.github.io",
     "port": 25
 }
+```
 
 ## Usage in projects
 

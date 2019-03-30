@@ -77,6 +77,7 @@ int main(int argc, char **argv) {
     }
 
     log_info("Accepting connections at port " + std::to_string(configuration.get_port()) + ".");
+    log_info("Using " + std::to_string(configuration.get_handlers().size()) + " configured handlers.");
 
     struct sockaddr_in client_addr = {};
     socklen_t client_addr_len = sizeof(client_addr);

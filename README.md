@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7cd4042a1c8e42828b7182d7e5580564)](https://www.codacy.com/project/thepieterdc/mailbridge/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thepieterdc/mailbridge&amp;utm_campaign=Badge_Grade_Dashboard)
 
 ## Usage
-If no configuration file is provided, the mailserver listens on port `1025`, incoming mails are logged to stdout and no authentication is required.
+If no configuration file is provided, the mailserver listens on port `1025, any authentication credentials are ignored and nothing happens when an incoming mail is received.
 
 ```
 ./mailbridge
@@ -17,12 +17,12 @@ A configuration file can be provided using the `-f` flag. This must be a json fi
 ```
 
 ## Configuration file
-- **handlers:** Configurable actions that should be executed when receiving new incoming emails. Multiple handlers can be configured, the `username` and `password` fields are used to identify which handler to execute. For now, the only built-in handler that can be configured sends mails to a Slack channel.
+- **handlers:** Configurable actions that should be executed when receiving new incoming emails. Multiple handlers can be configured, the `username` and `password` fields are used to identify which handler to execute. Consult the conf/ folder for more information about the available handlers.
 - **name:** The name of the mailserver, this can be anything and will be used when answering to `HELO/EHLO` requests.
 - **port:** The port that this mailserver should run on.
 
 ### Example configuration
-```
+```json
 {
     "handlers": [{
         "username": "some_user",
@@ -30,7 +30,6 @@ A configuration file can be provided using the `-f` flag. This must be a json fi
         "handler": "slack",
         "options": {
             "channel": "some_channel_name",
-            "team": "some_team",
             "webhook": "https://hooks.slack.com/services/a/b/c"
         }
     }],

@@ -9,6 +9,7 @@
 #include <string>
 #include <sys/socket.h>
 #include "smtp_thread.h"
+#include "../../util/string_util.h"
 
 void SmtpThread::client_send(const std::string &data) {
     auto length = static_cast<size_t>(data.length());
@@ -20,6 +21,8 @@ void SmtpThread::greet() {
 }
 
 void SmtpThread::handle_auth() {
+    auto *authentication_line = split_string(this->last_line);
+
     // Ignore authentication for now.
     client_send("235 2.7.0  Authentication Succeeded\n");
 }

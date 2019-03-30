@@ -37,6 +37,15 @@ public:
     virtual void accept_client(int socket) = 0;
 
     /**
+     * Tries to authenticate the given credentials. Returns true if at least
+     * one handler matches, or if there are no handlers configured.
+     *
+     * @param authentication the credentials to verify
+     * @return true if successfully authenticated
+     */
+    bool authenticate(Authentication *authentication);
+
+    /**
      * Gets the server configuration.
      *
      * @return the configuration

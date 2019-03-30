@@ -6,6 +6,11 @@
 #include "../handlers/slack_handler.h"
 #include "../handlers/stdout_handler.h"
 
+bool Server::authenticate(Authentication *authentication) {
+    return false;
+}
+
 void Server::handle(SmtpMessage *message) {
+
 //    this->handler->handle(message);
 }

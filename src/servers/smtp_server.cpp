@@ -24,6 +24,8 @@ void SmtpServer::accept_client(int socket) {
             client.handle_quit();
         } else if (command == "RCPT") {
             client.handle_rcpt();
+        } else if (line.empty()) {
+            break;
         } else {
             std::cerr << "Unknown command: " << command << std::endl;
             break;

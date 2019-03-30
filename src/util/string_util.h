@@ -11,11 +11,21 @@
 #include <vector>
 
 /**
- * Splits a string by spaces.
+ * Splits a string by a given delimiter, by iterating through all characters.
  *
  * @param input the input string to split
+ * @param delimiter the delimiter to split on
  * @return the parts of the string
  */
-std::vector<std::string> *split_string(const std::string& input);
+std::vector<std::string> split_string(const std::string &input, char delimiter);
+
+/**
+ * Splits a string by a given delimiter.
+ *
+ * @param input the input string to split
+ * @param delimiter the delimiter to split on
+ * @return the parts of the string
+ */
+std::vector<std::string> split_string(const std::string &input, const std::string& delimiter);
 
 #endif /* MAILBRIDGE_UTIL_STRING_UTIL_H */

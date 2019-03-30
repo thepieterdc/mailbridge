@@ -34,5 +34,5 @@ void SmtpServer::accept_client(int socket) {
 
     close(socket);
 
-    this->handle(client.get_message());
+    this->handle(client.get_authentication(), client.get_message());
 }

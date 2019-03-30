@@ -10,8 +10,8 @@
             }
         },
         {
-            "username": "ffb2",
-            "password": "ffb2",
+            "username": "ffb",
+            "password": "ffb",
             "handler": "stdout"
         }
     ],

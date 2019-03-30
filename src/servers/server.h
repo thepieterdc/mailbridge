@@ -57,9 +57,10 @@ public:
     /**
      * Handles the given message using the configured handler.
      *
+     * @param authentication credentials
      * @param message the message to handle
      */
-    void handle(SmtpMessage *message);
+    void handle(Authentication *authentication, SmtpMessage *message);
 };
 
 #endif /* MAILBRIDGE_SERVERS_SERVER_H */

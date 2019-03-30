@@ -16,7 +16,11 @@ bool Server::authenticate(Authentication *authentication) {
     return false;
 }
 
-void Server::handle(SmtpMessage *message) {
-
-//    this->handler->handle(message);
+void Server::handle(Authentication *authentication, SmtpMessage *message) {
+    for (auto &handler : this->configuration()->get_handlers()) {
+        auto auth = handler.first;
+        if (*auth == *authentication) {
+            handler.second->handle(message);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(mailbridge VERSION "2.0.1")
+project(mailbridge VERSION "2.1.1")
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)

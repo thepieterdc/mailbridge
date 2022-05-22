@@ -10,11 +10,6 @@ usage() {
 # Get the current version.
 version=$(cat CMakeLists.txt | grep "mailbridge VERSION" | grep -o '".*"' | tr -d '"')
 
-# Strip the optional -SNAPSHOT part.
-if echo "$version" | grep -q "\-SNAPSHOT"; then
-    version=$(echo "$version" | sed "s/-SNAPSHOT//g")
-fi
-
 # Split the version.
 major=$(echo "$version" | egrep -o "^[0-9]+")
 minor=$(echo "$version" | egrep -o "\.[0-9]+\." | egrep -o "[0-9]+")
@@ -24,7 +19,7 @@ bugfix=$(echo "$version" | egrep -o "\.[0-9]+$" | egrep -o "[0-9]+")
 bugfix=$((bugfix+1))
 
 # Build the new version.
-newversion="$major.$minor.$bugfix-SNAPSHOT"
+newversion="$major.$minor.$bugfix"
 
 # Set the new version.
 ./scripts/set-version.sh "$newversion"

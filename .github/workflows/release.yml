@@ -26,11 +26,11 @@ jobs:
       - name: Login to the container registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-      - name: Download the latest snapshot image for caching
-        run: docker pull ghcr.io/thepieterdc/mailbridge:latest-snapshot
+      - name: Download the latest image for caching
+        run: docker pull ghcr.io/thepieterdc/mailbridge:latest
 
       - name: Build the new image
-        run: docker build . -t ghcr.io/thepieterdc/mailbridge:latest -t ghcr.io/thepieterdc/mailbridge:${{ github.event.inputs.version }} --cache-from ghcr.io/thepieterdc/mailbridge:latest-snapshot
+        run: docker build . -t ghcr.io/thepieterdc/mailbridge:latest -t ghcr.io/thepieterdc/mailbridge:${{ github.event.inputs.version }} --cache-from ghcr.io/thepieterdc/mailbridge:latest
 
       - name: Push the new image
         run: docker push -a ghcr.io/thepieterdc/mailbridge

@@ -19,7 +19,7 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.version }}
 
@@ -44,7 +44,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Create a release branch
         run: |
@@ -60,7 +60,7 @@ jobs:
         run: ./scripts/set-version.sh ${{ github.event.inputs.version }}
 
       - name: Make the release commit
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           add: 'CMakeLists.txt'
           branch: release
@@ -81,7 +81,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: release
 
@@ -91,21 +91,15 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Create release
-        id: release
-        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          draft: false
-          prerelease: false
-          release_name: ${{ github.event.inputs.version }}
-          tag_name: ${{ github.event.inputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "${{ github.event.inputs.version }}" --title "${{ github.event.inputs.version }}" --verify-tag --generate-notes
 
       - name: Increase the version
         run: ./scripts/increment-version.sh
 
       - name: Make the next development commit
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           add: 'CMakeLists.txt'
           branch: release

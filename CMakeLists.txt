@@ -46,7 +46,7 @@ file(GLOB util_SRC
 
 add_compile_options(-Wall -Wextra -Wpedantic -Wno-missing-field-initializers -Wno-unused-parameter)
 
-add_executable(mailbridge src/main.cpp ${configurations_SRC} ${handlers_SRC} ${messages_SRC} ${servers_SRC} ${util_SRC})
+add_executable(mailbridge src/main.cpp lib/base64/base64.cpp ${configurations_SRC} ${handlers_SRC} ${messages_SRC} ${servers_SRC} ${util_SRC})
 target_link_libraries(mailbridge curl mosquitto pthread)
 
 include_directories(${BASE64_INCLUDE_DIRS})

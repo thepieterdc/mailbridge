@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 #include <sys/socket.h>
-#include "base64.hpp"
+#include "base64.h"
 #include "smtp_thread.h"
 #include "../../util/string_util.h"
 #include "../../util/logging_util.h"
